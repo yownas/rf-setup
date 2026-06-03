@@ -153,7 +153,7 @@ function Torch-Reinstall {
         [String]$IndexUrl = ""
     )
     Write-Host "Removing old torch install"
-    python_embeded\Scripts\pip.exe uninstall torch torchvision torchaudio
+    python_embeded\Scripts\pip.exe uninstall -y torch torchvision torchaudio
     Write-Host "Installing new torch from $IndexUrl (This might take a while)"
     python_embeded\Scripts\pip.exe install --pre torch torchvision torchaudio --index-url $IndexUrl
     Write-Host "Lock Torch version"
@@ -183,12 +183,13 @@ function Loop-Torch {
 	    "RDNA 3 (RX 7000)",
 	    "RDNA 3.5 (Strix halo/Ryzen AI Max+ 365)",
 	    "RDNA 4 (RX 9000)",
+	    "cpu",
 	    "Back"
         ) "Select Torch version"
         switch ($input) {
             '1' {
                 Write-Host "Removing old torch install"
-                python_embeded\Scripts\pip.exe uninstall torch torchvision torchaudio
+                python_embeded\Scripts\pip.exe uninstall -y torch torchvision torchaudio
                 if (Test-Path -Path "RuinedFooocus\freezetorch") {
                     Remove-Item -Path "RuinedFooocus\freezetorch"
                 }
@@ -202,7 +203,8 @@ function Loop-Torch {
 	    '6' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx110X-all/" }
 	    '7' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx1151/" }
 	    '8' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx120x-all/" }
-	    '9' { return }
+	    '9' { Torch-Reinstall "https://download.pytorch.org/whl/cpu" }
+	    '10' { return }
         }
     } until ($input -eq "$MenuItems.Count")
 }
@@ -252,7 +254,7 @@ function Loop-Ops {
 	    }
             '2' {
                 Write-Host "Removing old torch install"
-                python_embeded\Scripts\pip.exe uninstall torch torchvision torchaudio
+                python_embeded\Scripts\pip.exe uninstall -y torch torchvision torchaudio
                 if (Test-Path -Path "RuinedFooocus\freezetorch") {
                     Remove-Item -Path "RuinedFooocus\freezetorch"
                 }
