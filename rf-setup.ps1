@@ -156,6 +156,8 @@ function Torch-Reinstall {
     python_embeded\Scripts\pip.exe uninstall torch torchvision torchaudio
     Write-Host "Installing new torch from $IndexUrl (This might take a while)"
     python_embeded\Scripts\pip.exe install --pre torch torchvision torchaudio --index-url $IndexUrl
+    Write-Host "Lock Torch version"
+    New-Item -ItemType File -Path "RuinedFooocus\freezetorch" -Force | Out-Null
     Write-Host "Done..."
 }
 function Loop-Torch {
