@@ -91,7 +91,7 @@ function Install-Python {
     & "$Result\python.exe" "$Result\get-pip.py"
 
     # Install packages
-    & "$Result\Scripts\pip.exe" install --no-warn-script-location`
+    & "$Result\Scripts\pip.exe" install `
         wheel `
         packaging `
         pygit2 `
@@ -155,7 +155,7 @@ function Torch-Reinstall {
     Write-Host "Removing old torch install"
     python_embeded\Scripts\pip.exe uninstall -y torch torchvision torchaudio
     Write-Host "Installing new torch from $IndexUrl (This might take a while)"
-    python_embeded\Scripts\pip.exe install --no-warn-script-location --pre torch torchvision torchaudio --index-url $IndexUrl
+    python_embeded\Scripts\pip.exe install --pre torch torchvision torchaudio --index-url $IndexUrl
     Write-Host "Lock Torch version"
     New-Item -ItemType File -Path "RuinedFooocus\freezetorch" -Force | Out-Null
     Write-Host "Done..."
