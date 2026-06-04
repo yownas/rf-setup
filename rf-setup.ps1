@@ -103,7 +103,7 @@ function Install-Python {
 function Loop-Python {
     do {
         Clear
-	Status-Bar
+        Status-Bar
         $input = Get-MenuSelection @("3.10.20", "3.13.13 (Recommended)", "Back") "Select python version"
         switch ($input) {
             '1' { Install-Python "3.10.20"; Pause }
@@ -122,27 +122,27 @@ function Get-RF {
     Write-Host "Please wait. Cloning branch $Branch from $Repo"
     python_embeded\python.exe -c "import pygit2;pygit2.clone_repository('$Repo', 'RuinedFooocus', checkout_branch='$Branch')"
     Write-Host "Done..."
-    pause
+    Pause
 }
 function Loop-RF {
     if (-not (Test-Path -Path "python_embeded")) {
         Write-Host "Sorry, you need to install python first."
-	pause
+        Pause
         return
     }
     if (Test-Path -Path "RuinedFooocus") {
         Write-Host "Sorry, you already have a RuinedFooocus folder."
-	pause
+        Pause
         return
     }
     do {
         Clear
-	Status-Bar
+        Status-Bar
         $input = Get-MenuSelection @("main (recommended)", "development", "Back") "Get RuinedFooocus"
         switch ($input) {
             '1' { Get-RF "main" }
             '2' { Get-RF "development" }
-	    '3' { return }
+            '3' { return }
         }
     } until ($input -eq "$MenuItems.Count")
 }
@@ -163,30 +163,30 @@ function Torch-Reinstall {
 function Loop-Torch {
     if (-not (Test-Path -Path "python_embeded")) {
         Write-Host "Sorry, you need to install python first."
-	pause
+        Pause
         return
     }
     if (-not (Test-Path -Path "RuinedFooocus")) {
         Write-Host "Sorry, you need to get RuinedFooocus first."
-	pause
+        Pause
         return
     }
     do {
         Clear
-	Status-Bar
+        Status-Bar
         $input = Get-MenuSelection @(
             "Auto (recommended) (Will remove current Torch)",
-	    "CUDA 12.4",
-	    "CUDA 12.8",
-	    "CUDA 13.0",
-	    "CUDA 13.2 (nightly)",
-	    "RDNA 3 (RX 7000)",
-	    "RDNA 3.5 (Strix halo/Ryzen AI Max+ 365)",
-	    "RDNA 4 (RX 9000)",
-	    "cpu",
-	    "freeze current torch version",
-	    "unfreeze (RF might update Torch automatically)",
-	    "Back"
+            "CUDA 12.4",
+            "CUDA 12.8",
+            "CUDA 13.0",
+            "CUDA 13.2 (nightly)",
+            "RDNA 3 (RX 7000)",
+            "RDNA 3.5 (Strix halo/Ryzen AI Max+ 365)",
+            "RDNA 4 (RX 9000)",
+            "cpu",
+            "freeze current torch version",
+            "unfreeze (RF might update Torch automatically)",
+            "Back"
         ) "Select Torch version"
         switch ($input) {
             '1' {
@@ -228,7 +228,7 @@ function Create-Run-Bat {
     $runbat = "run.bat"
     if (Test-Path -Path "$runbat") {
         Write-Host "Sorry, you already have a $runbat file."
-	pause
+        Pause
         return
     }
     $batdata = @"
@@ -244,28 +244,28 @@ pause
 function Loop-Ops {
     if (-not (Test-Path -Path "python_embeded")) {
         Write-Host "Sorry, you need to install python first."
-	pause
+        Pause
         return
     }
     if (-not (Test-Path -Path "RuinedFooocus")) {
         Write-Host "Sorry, you need to get RuinedFooocus first."
-	pause
+        Pause
         return
     }
     do {
         Clear
-	Status-Bar
+        Status-Bar
         $input = Get-MenuSelection @(
             "Trigger reinstall of all python modules next start",
             "Trigger reinstall of Torch next start (will set selected version to Auto)",
-	    "Back"
+            "Back"
         ) "Operations"
         switch ($input) {
-	    '1' {
+            '1' {
                 New-Item -ItemType File -Path "RuinedFooocus\reinstall" -Force | Out-Null
-		Write-Host "Reinstall of python modules queued"
-		Pause
-	    }
+                Write-Host "Reinstall of python modules queued"
+                Pause
+            }
             '2' {
                 Write-Host "Removing old torch install"
                 python_embeded\Scripts\pip.exe uninstall -y torch torchvision torchaudio
@@ -273,10 +273,10 @@ function Loop-Ops {
                     Remove-Item -Path "RuinedFooocus\freezetorch"
                 }
                 New-Item -ItemType File -Path "RuinedFooocus\reinstalltorch" -Force | Out-Null
-		Write-Host "Torch unfrozen and reinstall queued"
-		Pause
-	    }
-	    '3' { return }
+                Write-Host "Torch unfrozen and reinstall queued"
+                Pause
+            }
+            '3' { return }
         }
     } until ($input -eq "$MenuItems.Count")
 }
@@ -285,12 +285,12 @@ function Loop-Ops {
 function Start-RF {
     if (-not (Test-Path -Path "python_embeded")) {
         Write-Host "Sorry, you need to install python first."
-	pause
+        Pause
         return
     }
     if (-not (Test-Path -Path "RuinedFooocus")) {
         Write-Host "Sorry, you need to get RuinedFooocus first."
-	pause
+        Pause
         return
     }
     Write-Host "Starting RuinedFooocus..."
@@ -304,20 +304,20 @@ do {
     Status-Bar
     $input = Get-MenuSelection @(
         "Select python",
-	"Install RuinedFooocus",
-	"Select Torch version",
-	"Write run.bat start script",
-	"Other operations",
-	"Start RuinedFooocus",
-	"Exit"
+        "Install RuinedFooocus",
+        "Select Torch version",
+        "Write run.bat start script",
+        "Other operations",
+        "Start RuinedFooocus",
+        "Exit"
     )
     switch ($input) {
         '1' { Loop-Python }
         '2' { Loop-RF }
         '3' { Loop-Torch }
         '4' { Create-Run-Bat }
-	'5' { Loop-Ops }
-	'6' { Start-RF }
+        '5' { Loop-Ops }
+        '6' { Start-RF }
         '7' { return }
     }
 } until ($input -eq "$MenuItems.Count")
