@@ -1,4 +1,4 @@
-# Setup script for RuinedFooocus
+# Setup script for [RuinedFooocus](https://github.com/runew0lf/RuinedFooocus/)
 
 ## Windows
 
@@ -12,6 +12,8 @@
 4. Install RuinedFoocus by selecting branch (you most likely want the "main" branch)
 5. Optional: Select Torch version. RuinedFooocus will try to automatically find a good version that fits your GPU, but AMD users might need to force a specific version.
 6. Optional (but recommended): Create a run.bat script that will start RuinedFooocus
+
+Under `Select Torch version` you can also freeze/unfreeze the currently installed version. Startup will be a little bit faster since RF will skip the Torch-check.
 
 #### If it doesn't work
 
