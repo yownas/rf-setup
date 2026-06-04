@@ -184,6 +184,8 @@ function Loop-Torch {
 	    "RDNA 3.5 (Strix halo/Ryzen AI Max+ 365)",
 	    "RDNA 4 (RX 9000)",
 	    "cpu",
+	    "freeze current torch version",
+	    "unfreeze (RF might update Torch automatically)",
 	    "Back"
         ) "Select Torch version"
         switch ($input) {
@@ -193,18 +195,30 @@ function Loop-Torch {
                 if (Test-Path -Path "RuinedFooocus\freezetorch") {
                     Remove-Item -Path "RuinedFooocus\freezetorch"
                 }
-		Write-Host "Torch unfrozen"
-		Pause
+                Write-Host "Torch unfrozen"
+                Pause
             }
-	    '2' { Torch-Reinstall "https://download.pytorch.org/whl/cu124/" }
-	    '3' { Torch-Reinstall "https://download.pytorch.org/whl/cu128/" }
-	    '4' { Torch-Reinstall "https://download.pytorch.org/whl/cu130/" }
-	    '5' { Torch-Reinstall "https://download.pytorch.org/whl/nightly/cu132/" }
-	    '6' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx110X-all/" }
-	    '7' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx1151/" }
-	    '8' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx120x-all/" }
-	    '9' { Torch-Reinstall "https://download.pytorch.org/whl/cpu" }
-	    '10' { return }
+            '2' { Torch-Reinstall "https://download.pytorch.org/whl/cu124/" }
+            '3' { Torch-Reinstall "https://download.pytorch.org/whl/cu128/" }
+            '4' { Torch-Reinstall "https://download.pytorch.org/whl/cu130/" }
+            '5' { Torch-Reinstall "https://download.pytorch.org/whl/nightly/cu132/" }
+            '6' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx110X-all/" }
+            '7' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx1151/" }
+            '8' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx120x-all/" }
+            '9' { Torch-Reinstall "https://download.pytorch.org/whl/cpu" }
+            '10' {
+                New-Item -ItemType File -Path "RuinedFooocus\freezetorch" -Force | Out-Null
+                Write-Host "Torch frozen"
+                Pause
+            }
+            '11' {
+                if (Test-Path -Path "RuinedFooocus\freezetorch") {
+                    Remove-Item -Path "RuinedFooocus\freezetorch"
+                }
+                Write-Host "Torch unfrozen"
+                Pause
+            }
+            '12' { return }
         }
     } until ($input -eq "$MenuItems.Count")
 }
