@@ -175,10 +175,10 @@ function Loop-Torch {
         Clear
         Status-Bar
         $input = Get-MenuSelection @(
-            "Auto (recommended) (Will remove current Torch)",
-            "CUDA 12.4",
-            "CUDA 12.8",
-            "CUDA 13.0",
+            "Auto (Remove current Torch and let RF install its prefered version at startup)",
+            "CUDA 12.4 (Older GTX gpus)",
+            "CUDA 12.8 (GTX1660, RTX20xx and up)",
+            "CUDA 13.0 (RTX20xx and up, DGX Spark)",
             "CUDA 13.2 (nightly)",
             "RDNA 3 (RX 7000)",
             "RDNA 3.5 (Strix halo/Ryzen AI Max+ 365)",
