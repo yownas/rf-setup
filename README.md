@@ -19,3 +19,13 @@ Under `Select Torch version` you can also freeze/unfreeze the currently installe
 
 * You might need to install [Visual C++ Redistributable for Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48145) for RuinedFoocus to run properly.
 * If the script doesn't start you might need to open up a PowerShell and run:<br>`Set-ExecutionPolicy Unrestricted -Scope CurrentUser`<br>to allow scripts. More information [here](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.6).
+
+## Linux
+
+### rf-setup.sh
+
+* Almost the same as above...
+
+#### If it doesn't work
+
+* The script requires that you have git and wget installed.
