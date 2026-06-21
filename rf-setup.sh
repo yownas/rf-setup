@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Place this script in an empty folder where you want your RuinedFooocus installation
+# Make sure it is executable with: chmod 755 rf-setup.sh
+# Run it: ./rf-setup.sh
+
 python_embeded_dir="python_embeded"
 python_urls=(
   "3.10.20 x86_64|https://github.com/astral-sh/python-build-standalone/releases/download/20260602/cpython-3.10.20+20260602-x86_64-unknown-linux-gnu-pgo+lto-full.tar.zst"
@@ -116,7 +120,7 @@ git_clone() {
     read
   else
     echo "Using branch ${ruinedfooocus_branches[$1]}"
-    git clone -b "$(echo "${ruinedfooocus_branches[$1]}" | cut -f1)" "$ruinedfooocus_repo"
+    git clone -b "$(echo "${ruinedfooocus_branches[$1]}" | cut -d' ' -f1)" "$ruinedfooocus_repo"
     echo;echo "Done... (Press enter)"
   fi
   read
