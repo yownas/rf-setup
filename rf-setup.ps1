@@ -256,17 +256,24 @@ function Loop-Ops {
         Clear
         Status-Bar
         $input = Get-MenuSelection @(
+            "Fix broken python modules",
             "Trigger reinstall of all python modules next start",
             "Trigger reinstall of Torch next start (will set selected version to Auto)",
             "Back"
         ) "Operations"
         switch ($input) {
             '1' {
+                python_embeded\Scripts\pip.exe install --force-reinstall --no-cache-dir -y -r RuinedFooocus\requirements_versions.txt
+                python_embeded\Scripts\pip.exe install --force-reinstall --no-cache-dir -y -r RuinedFooocus\pip\modules.txt
+		Write-Host "Python modules reinstalled"
+		Pause
+            }
+            '2' {
                 New-Item -ItemType File -Path "RuinedFooocus\reinstall" -Force | Out-Null
                 Write-Host "Reinstall of python modules queued"
                 Pause
             }
-            '2' {
+            '3' {
                 Write-Host "Removing old torch install"
                 python_embeded\Scripts\pip.exe uninstall -y torch torchvision torchaudio
                 if (Test-Path -Path "RuinedFooocus\freezetorch") {
@@ -276,7 +283,7 @@ function Loop-Ops {
                 Write-Host "Torch unfrozen and reinstall queued"
                 Pause
             }
-            '3' { return }
+            '4' { return }
         }
     } until ($input -eq "$MenuItems.Count")
 }

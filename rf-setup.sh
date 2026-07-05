@@ -196,7 +196,55 @@ torch_loop() {
     fi
   done
 }
+ops_loop() {
+  if [ \! -d "$python_embeded_dir" ]; then
+    echo "You need to install python first."
+    read
+    return
+  fi
+  if [ \! -d "$ruinedfooocus_dir" ]; then
+    echo "You need to download RuinedFooocus first."
+    read
+    return
+  fi
+  clear
+  header
+  while true; do
+    options=(
+      "Fix broken python modules"
+      "Trigger reinstall of all python modules next start"
+      "Trigger reinstall of Torch next start (will set selected version to Auto)"
+      "Back"
+    )
+    menu
+    case $selected in
+      0)
+        $python_embeded_dir/bin/pip install --force-reinstall --no-cache-dir -y -r RuinedFooocus/requirements_versions.txt
+        $python_embeded_dir/bin/pip install --force-reinstall --no-cache-dir -y -r RuinedFooocus/pip/modules.txt
+        echo "Python modules reinstalled"
+        read
+        ;;
+      1)
+        touch RuinedFooocus/reinstall
+	echo "Reinstall of python modules queued"
+        read
+        ;;
+      2)
+        echo "Removing old torch install"
+        $python_embeded_dir/bin/pip uninstall -y torch torchvision torchaudio
+        rf -f RuinedFooocus/freezetorch
+        touch RuinedFooocus/reinstalltorch
+        echo "Torch unfrozen and reinstall queued"
+        read
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
 
+
+}
 
 main_loop() {
   while true; do
@@ -204,6 +252,7 @@ main_loop() {
       "Python"
       "RuinedFoocus"
       "Torch"
+      "Other operations"
       "Write run.sh script"
       "Start RuinedFooocus"
       "Quit"
@@ -220,12 +269,15 @@ main_loop() {
         torch_loop
         ;;
       3)
+        ops_loop
+	;;
+      4)
         echo "$python_embeded_dir/bin/python $ruinedfooocus_dir/entry_with_update.py" > run.sh
 	chmod 755 run.sh
         echo;echo "Done... (Press enter)"
         read
         ;;
-      4)
+      5)
         $python_embeded_dir/bin/python $ruinedfooocus_dir/entry_with_update.py
         echo;echo "Done... (Press enter)"
         read
