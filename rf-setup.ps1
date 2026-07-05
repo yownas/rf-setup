@@ -263,8 +263,8 @@ function Loop-Ops {
         ) "Operations"
         switch ($input) {
             '1' {
-                python_embeded\Scripts\pip.exe install --force-reinstall --no-cache-dir -y -r RuinedFooocus\requirements_versions.txt
-                python_embeded\Scripts\pip.exe install --force-reinstall --no-cache-dir -y -r RuinedFooocus\pip\modules.txt
+                python_embeded\Scripts\pip.exe install --force-reinstall --no-cache-dir -r RuinedFooocus\requirements_versions.txt
+                python_embeded\Scripts\pip.exe install --force-reinstall --no-cache-dir -r RuinedFooocus\pip\modules.txt
 		Write-Host "Python modules reinstalled"
 		Pause
             }

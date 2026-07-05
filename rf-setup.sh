@@ -219,8 +219,8 @@ ops_loop() {
     menu
     case $selected in
       0)
-        $python_embeded_dir/bin/pip install --force-reinstall --no-cache-dir -y -r RuinedFooocus/requirements_versions.txt
-        $python_embeded_dir/bin/pip install --force-reinstall --no-cache-dir -y -r RuinedFooocus/pip/modules.txt
+        $python_embeded_dir/bin/pip install --force-reinstall --no-cache-dir -r RuinedFooocus/requirements_versions.txt
+        $python_embeded_dir/bin/pip install --force-reinstall --no-cache-dir -r RuinedFooocus/pip/modules.txt
         echo "Python modules reinstalled"
         read
         ;;
