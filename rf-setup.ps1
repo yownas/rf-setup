@@ -176,10 +176,11 @@ function Loop-Torch {
         Status-Bar
         $input = Get-MenuSelection @(
             "Auto (Remove current Torch and let RF install its prefered version at startup)",
-            "CUDA 12.4 (Older GTX gpus)",
+            "CUDA 12.6 (Older GTX gpus)",
             "CUDA 12.8 (GTX1660, RTX20xx and up)",
             "CUDA 13.0 (RTX20xx and up, DGX Spark)",
-            "CUDA 13.2 (nightly)",
+            "CUDA 13.2 (latest)",
+            "CUDA 13.4 (nightly)",
             "RDNA 3 (RX 7000)",
             "RDNA 3.5 (Strix halo/Ryzen AI Max+ 365)",
             "RDNA 4 (RX 9000)",
@@ -198,15 +199,16 @@ function Loop-Torch {
                 Write-Host "Torch unfrozen"
                 Pause
             }
-            '2' { Torch-Reinstall "https://download.pytorch.org/whl/cu124/" }
+            '2' { Torch-Reinstall "https://download.pytorch.org/whl/cu126/" }
             '3' { Torch-Reinstall "https://download.pytorch.org/whl/cu128/" }
             '4' { Torch-Reinstall "https://download.pytorch.org/whl/cu130/" }
-            '5' { Torch-Reinstall "https://download.pytorch.org/whl/nightly/cu132/" }
-            '6' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx110X-all/" }
-            '7' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx1151/" }
-            '8' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx120x-all/" }
-            '9' { Torch-Reinstall "https://download.pytorch.org/whl/cpu" }
-            '10' {
+            '5' { Torch-Reinstall "https://download.pytorch.org/whl/cu132/" }
+            '6' { Torch-Reinstall "https://download.pytorch.org/whl/nightly/cu134/" }
+            '7' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx110X-all/" }
+            '8' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx1151/" }
+            '9' { Torch-Reinstall "https://rocm.nightlies.amd.com/v2/gfx120x-all/" }
+            '10' { Torch-Reinstall "https://download.pytorch.org/whl/cpu" }
+            '11' {
                 New-Item -ItemType File -Path "RuinedFooocus\freezetorch" -Force | Out-Null
                 Write-Host "Torch frozen"
                 Pause

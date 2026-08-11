@@ -18,10 +18,11 @@ ruinedfooocus_branches=(
 )
 torch_options=(
   "Auto ((Remove current Torch and let RF install its prefered version at startup)|auto"
-  "CUDA 12.4 (Older GTX gpus)|https://download.pytorch.org/whl/cu124/"
+  "CUDA 12.6 (Older GTX gpus)|https://download.pytorch.org/whl/cu126/"
   "CUDA 12.8 (GTX1660, RTX20xx and up)|https://download.pytorch.org/whl/cu128/"
   "CUDA 13.0 (RTX20xx and up, DGX Spark)|https://download.pytorch.org/whl/cu130/"
-  "CUDA 13.2 (nightly)|https://download.pytorch.org/whl/nightly/cu132/"
+  "CUDA 13.2 (latest)|https://download.pytorch.org/whl/cu132/"
+  "CUDA 13.4 (nightly)|https://download.pytorch.org/whl/nightly/cu134/"
   "RDNA 3 (RX 7000)|https://rocm.nightlies.amd.com/v2/gfx110X-all/"
   "RDNA 3.5 (Strix halo/Ryzen AI Max+ 365)|https://rocm.nightlies.amd.com/v2/gfx1151/"
   "RDNA 4 (RX 9000)|https://rocm.nightlies.amd.com/v2/gfx120x-all/"
