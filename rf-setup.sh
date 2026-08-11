@@ -7,7 +7,7 @@
 python_embeded_dir="python_embeded"
 python_urls=(
   "3.10.20 x86_64|https://github.com/astral-sh/python-build-standalone/releases/download/20260602/cpython-3.10.20+20260602-x86_64-unknown-linux-gnu-pgo+lto-full.tar.zst"
-  "3.13.13 x86_64|https://github.com/astral-sh/python-build-standalone/releases/download/20260602/cpython-3.13.13+20260602-x86_64-unknown-linux-gnu-pgo+lto-full.tar.zst"
+  "3.13.13 x86_64 (recommended)|https://github.com/astral-sh/python-build-standalone/releases/download/20260602/cpython-3.13.13+20260602-x86_64-unknown-linux-gnu-pgo+lto-full.tar.zst"
 )
 python_modules="wheel packaging pygit2 setuptools==80.9.0"
 ruinedfooocus_dir="RuinedFooocus"
