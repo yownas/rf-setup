@@ -233,7 +233,7 @@ ops_loop() {
       2)
         echo "Removing old torch install"
         $python_embeded_dir/bin/pip uninstall -y torch torchvision torchaudio
-        rf -f RuinedFooocus/freezetorch
+        rm -f RuinedFooocus/freezetorch
         touch RuinedFooocus/reinstalltorch
         echo "Torch unfrozen and reinstall queued"
         read
