@@ -6,8 +6,7 @@
 
 python_embeded_dir="python_embeded"
 python_urls=(
-  "3.10.20 x86_64|https://github.com/astral-sh/python-build-standalone/releases/download/20260602/cpython-3.10.20+20260602-x86_64-unknown-linux-gnu-pgo+lto-full.tar.zst"
-  "3.13.13 x86_64 (recommended)|https://github.com/astral-sh/python-build-standalone/releases/download/20260602/cpython-3.13.13+20260602-x86_64-unknown-linux-gnu-pgo+lto-full.tar.zst"
+  "3.13.13 x86_64|https://github.com/astral-sh/python-build-standalone/releases/download/20260602/cpython-3.13.13+20260602-x86_64-unknown-linux-gnu-pgo+lto-full.tar.zst"
 )
 python_modules="wheel packaging pygit2 setuptools==80.9.0"
 ruinedfooocus_dir="RuinedFooocus"
@@ -86,7 +85,8 @@ python_install() {
   clear
   header
   if [ -d "$python_embeded_dir" ]; then
-    echo "Sorry, you already have a python_embeded."
+    echo "Sorry, you already have a $python_embedded_dir folder. To change python version you need to manually remove or rename the old ${python_embeded_dir}."
+
     echo "Press enter to continue."
   else
     wget -O python.tar.zst "$url"

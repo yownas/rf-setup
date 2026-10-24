@@ -56,7 +56,7 @@ function Install-Python {
     $Dl = "dl"
 
     if (Test-Path $Result) {
-        Write-Host "$Result already exists"
+        Write-Host "$Result already exists. To change python version you need to manually remove or rename the old $Result folder."
         return
     }
 
@@ -104,11 +104,10 @@ function Loop-Python {
     do {
         Clear
         Status-Bar
-        $input = Get-MenuSelection @("3.10.20", "3.13.13 (Recommended)", "Back") "Select python version"
+        $input = Get-MenuSelection @("3.13.13", "Back") "Select python version"
         switch ($input) {
-            '1' { Install-Python "3.10.20"; Pause }
-            '2' { Install-Python "3.13.13"; Pause }
-            '3' { return }
+            '1' { Install-Python "3.13.13"; Pause }
+            '2' { return }
         }
     } until ($input -eq "$MenuItems.Count")
 }
